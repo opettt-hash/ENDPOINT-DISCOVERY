@@ -1,7 +1,7 @@
 # ENDPOINT DISCOVERY (Passive) — Dokumentasi
 
 **Ringkasan Singkat**
-Program Script Python Untuk Melakukan *passive* Discovery Endpoint Api Pada Sebuah Website Untuk Reconnaissance Awal Saat Kamu Sudah Punya Izin Pentesting, Melakukan `GET`/`HEAD` (Optional crt.sh query)
+Program Script Python Untuk Melakukan *Passive* Discovery Endpoint Api Pada Sebuah Website Untuk Reconnaissance Awal Saat Kamu Sudah Punya Izin Pentesting, Melakukan `GET`/`HEAD` (Optional crt.sh query)
 
 ---
 
