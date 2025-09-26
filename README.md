@@ -20,7 +20,7 @@ Program Script Python Untuk Melakukan *passive* Discovery Endpoint Pada Sebuah W
 
 Pastikan Python 3 Terpasang, Disarankan Jalankan Di Lingkungan Yang Stabil
 
-Install Dependensi:
+Install Dependensi
 
 ```bash
 pip install requests beautifulsoup4
@@ -69,13 +69,13 @@ Opsi:
 * `--only-head` : Hanya Lakukan HEAD (Lebih Aman & Cepat)
 * `--workers N` : Concurrency
 
-`curl_checks.sh` Berisi Perintah `curl` Otomatis Untuk Endpoint Yang Merespon OK (<400).
+`curl_checks.sh` Berisi Perintah `curl` Otomatis Untuk Endpoint Yang Merespon OK (<400)
 
 ---
 
 ## Contoh Alur Cepat (One-Liner Yang Setara)
 
-* Generate List URL Dari `api_candidates.txt` Dan Lakukan HEAD:
+* Generate List URL Dari `api_candidates.txt` Dan Lakukan HEAD
 
 ```bash
 awk -F'\t' 'NR>1 {print $3}' api_candidates.txt | sort -u | while read url; do
@@ -91,38 +91,38 @@ awk -F'\t' 'NR>1 {print $3}' api_candidates.txt | sort -u | while read url; do
 done
 ```
 
-Tapi Lebih Rapi Pakai `validate_api_candidates.py` Karena Menangani Error Dan Concurrency.
+Tapi Lebih Rapi Pakai `validate_api_candidates.py` Karena Menangani Error Dan Concurrency
 
 ---
 
 ## Output & File Penjelasan
 
 * `endpoints_report.json` : Laporan Lengkap Dari Discovery (Crawled Pages, Probe_Results, Forms, Js Files, Subdomains_Passive, Dsb).
-* `burp_scan.csv` : CSV Berisi `method_or_probe, url, status, content_type, length` — Import Ke Burp Target.
-* `curl_examples.txt` : Contoh Curl Untuk Form POST/GET Otomatis.
-* `api_candidates.txt` : Daftar Kandidat Endpoint API (Hasil Parse).
-* `api_validation.json` : hasil Validasi (HEAD & GET sample) Per URL.
-* `curl_checks.sh` : Skrip Curl Untuk Re-Check Endpoint Yang Merespon OK.
+* `burp_scan.csv` : CSV Berisi `method_or_probe, url, status, content_type, length` — Import Ke Burp Target
+* `curl_examples.txt` : Contoh Curl Untuk Form POST/GET Otomatis
+* `api_candidates.txt` : Daftar Kandidat Endpoint API (Hasil Parse)
+* `api_validation.json` : hasil Validasi (HEAD & GET sample) Per URL
+* `curl_checks.sh` : Skrip Curl Untuk Re-Check Endpoint Yang Merespon OK
 
 ---
 
 ## Troubleshooting Singkat
 
-* **Error `Invalid IPv6 URL`** Saat Menjalankan cript Pastikan Menggunakan Versi Script Yang Sudah Diperbaiki (Script Saat Ini Sudah Meng-Skip Token URL Yang Tidak Valid).
+* **Error `Invalid IPv6 URL`** Saat Menjalankan cript Pastikan Menggunakan Versi Script Yang Sudah Diperbaiki (Script Saat Ini Sudah Meng-Skip Token URL Yang Tidak Valid)
 * **Script Lama Lambat**: Turunkan `--max-pages`, Atau Kurangi `--workers` Jika Target Sensitif.
-* **Butuh Runtime JS (SPA)**: Gunakan Browser DevTools (Network → XHR/Fetch) Pada Session Interaktif Untuk Menangkap API Runtime.
+* **Butuh Runtime JS (SPA)**: Gunakan Browser DevTools (Network → XHR/Fetch) Pada Session Interaktif Untuk Menangkap API Runtime
 
 ---
 
 ## Etika & Legal
 
 * Hanya Gunakan Jika Kamu **Memiliki Izin Tertulis** Dari Pemilik Sistem!
-* Jika Menemukan Data Sensitif Atau Bug Kritikal, Laporkan Melalui Jalur Resmi (CSIRT / Owner) Sesuai Kebijakan.
+* Jika Menemukan Data Sensitif Atau Bug Kritikal, Laporkan Melalui Jalur Resmi (CSIRT / Owner) Sesuai Kebijakan
 ---
 
 ## Contact
 
-Kalau mau tambahan fitur (mis. output CSV custom untuk Burp, headless-browser extraction, atau parsing otomatis untuk types tertentu), tinggal tambahin issue di repo atau tag aku di commit message.
+Kalau mau tambahan fitur (mis. output CSV custom untuk Burp, headless-browser extraction, atau parsing otomatis untuk types tertentu), tinggal tambahin issue di repo atau tag aku di commit message
 
 ---
 
