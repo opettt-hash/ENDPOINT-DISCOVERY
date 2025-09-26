@@ -1,7 +1,7 @@
 # ENDPOINT DISCOVERY (Passive) — Dokumentasi
 
 **Ringkasan Singkat**
-Program Script Python Untuk Melakukan *passive* Discovery Endpoint Api Pada Sebuah Website, Cocok Untuk Reconnaissance Awal Saat Kamu Sudah Punya Izin Pentesting, Semua Script Hanya Melakukan `GET`/`HEAD` (Dan Optional crt.sh query)
+Program Script Python Untuk Melakukan *passive* Discovery Endpoint Api Pada Sebuah Website Untuk Reconnaissance Awal Saat Kamu Sudah Punya Izin Pentesting, Semua Script Hanya Melakukan `GET`/`HEAD` (Dan Optional crt.sh query)
 
 ---
 
@@ -55,7 +55,7 @@ python3 parse_api.py
 # Output: api_candidates.txt
 ```
 
-`parse_api.py` Mencari Kandidat Dari Beberapa Sumber Di `endpoints_report.json` (probe_results, forms, js_found_urls, subdomains_passive).
+`parse_api.py` Mencari Kandidat Dari Beberapa Sumber Di `endpoints_report.json` (Probe_Results, Forms, Js_Found_Urls, Subdomains_Passive).
 
 3. **Validasi Kandidat (HEAD + GET Sample)**
 
@@ -122,7 +122,7 @@ Tapi Lebih Rapi Pakai `validate_api_candidates.py` Karena Menangani Error Dan Co
 
 ## Contact
 
-Kalau mau tambahan fitur (mis. output CSV custom untuk Burp, headless-browser extraction, atau parsing otomatis untuk types tertentu), tinggal tambahin issue di repo atau tag aku di commit message
+Kalau Mau Tambahan Fitur (Mis Output CSV Custom Untuk Burp, Headless-Browser Extraction, Atau Parsing Otomatis Untuk Types Tertentu), Tinggal Tambahin Issue Di Repo Atau Tag Saya Di Commit Message.Terimakasih
 
 ---
 
