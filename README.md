@@ -120,8 +120,6 @@ Tapi Lebih Rapi Pakai `validate_api_candidates.py` Karena Menangani Error Dan Co
 * Jika Menemukan Data Sensitif Atau Bug Kritikal, Laporkan Melalui Jalur Resmi (CSIRT / Owner) Sesuai Kebijakan.
 ---
 
----
-
 ## Contact
 
 Kalau mau tambahan fitur (mis. output CSV custom untuk Burp, headless-browser extraction, atau parsing otomatis untuk types tertentu), tinggal tambahin issue di repo atau tag aku di commit message.
