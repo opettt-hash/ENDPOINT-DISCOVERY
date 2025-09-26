@@ -1,11 +1,11 @@
 # ENDPOINT DISCOVERY (Passive) — Dokumentasi
 
 **Ringkasan Singkat**
-Program Script Python Untuk Melakukan *passive* Discovery Endpoint Publik Pada Sebuah Website, Cocok Untuk Reconnaissance Awal Saat Kamu Sudah Punya Izin Pentesting, Semua Script Hanya Melakukan `GET`/`HEAD` (Dan Optional crt.sh query);
+Program Script Python Untuk Melakukan *passive* Discovery Endpoint Publik Pada Sebuah Website, Cocok Untuk Reconnaissance Awal Saat Kamu Sudah Punya Izin Pentesting, Semua Script Hanya Melakukan `GET`/`HEAD` (Dan Optional crt.sh query)
 
 ---
 
-## Isi repository
+## Isi Repository
 
 * `discover_endpoints_full.py` — crawler + JS extractor + probe (hasil: `endpoints_report.json`, `burp_scan.csv`, `curl_examples.txt`).
 * `parse_api.py` — parser yang mengekstrak kandidat API dari `endpoints_report.json` → `api_candidates.txt`.
