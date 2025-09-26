@@ -1,4 +1,4 @@
-# Endpoint Discovery Toolkit (Passive) — Dokumentasi
+# ENDPOINT DISCOVERY (Passive) — Dokumentasi
 
 **Ringkasan singkat**
 Toolkit ini berisi skrip Python untuk melakukan *passive* discovery endpoint publik pada sebuah website (non-invasive). Cocok untuk reconnaissance awal saat kamu sudah punya izin pentest. Semua skrip hanya melakukan `GET`/`HEAD` (dan optional crt.sh query); **tidak** ada brute-force, injection, atau tindakan yang mengubah data.
