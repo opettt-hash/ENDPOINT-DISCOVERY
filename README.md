@@ -129,4 +129,4 @@ Kalau mau tambahan fitur (mis. output CSV custom untuk Burp, headless-browser ex
 
 ---
 
-*Created By Rolandino 
+*Created By Rolandino* 
