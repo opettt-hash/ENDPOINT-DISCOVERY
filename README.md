@@ -121,22 +121,6 @@ Tapi lebih rapi pakai `validate_api_candidates.py` karena menangani error dan co
 
 ---
 
-## Contribusi
-
-Terima kasih jika ingin kontribusi: buka PR (README, perbaikan bug, opsi baru). Gunakan branch dan PR standar GitHub.
-
-**Contoh template PR**:
-
-* Deskripsi singkat perubahan
-* Cara reproduce (jika bugfix)
-* Test yang dijalankan
-
----
-
-## Lisensi
-
-Gunakan lisensi MIT (default). Jika setuju, tambahkan file `LICENSE` dengan isi MIT.
-
 ---
 
 ## Contact
