@@ -1,1 +1,148 @@
-# ENDPOINT-DISCOVERY
+# Endpoint Discovery Toolkit (Passive) — Dokumentasi
+
+**Ringkasan singkat**
+Toolkit ini berisi skrip Python untuk melakukan *passive* discovery endpoint publik pada sebuah website (non-invasive). Cocok untuk reconnaissance awal saat kamu sudah punya izin pentest. Semua skrip hanya melakukan `GET`/`HEAD` (dan optional crt.sh query); **tidak** ada brute-force, injection, atau tindakan yang mengubah data.
+
+---
+
+## Isi repository
+
+* `discover_endpoints_full.py` — crawler + JS extractor + probe (hasil: `endpoints_report.json`, `burp_scan.csv`, `curl_examples.txt`).
+* `parse_api.py` — parser yang mengekstrak kandidat API dari `endpoints_report.json` → `api_candidates.txt`.
+* `validate_api_candidates.py` — melakukan HEAD (+ GET sample) pada `api_candidates.txt`, menyimpan `api_validation.json` dan `curl_checks.sh`.
+* `curl_examples.txt` — contoh `curl` yang dihasilkan otomatis dari crawling (form/POST dll).
+* `burp_scan.csv` — CSV siap import ke Burp Suite (target list).
+* `endpoints_report.json` — contoh output hasil discovery (jika ada).
+
+---
+
+## Persiapan (Termux / Linux)
+
+Pastikan Python 3 terpasang. Disarankan jalankan di lingkungan yang stabil.
+
+Install dependensi:
+
+```bash
+pip install requests beautifulsoup4
+# opsional (lebih nyaman untuk parsing hasil):
+# apt install jq
+```
+
+---
+
+## Cara pakai (urutan workflow)
+
+1. **Discovery (crawl + JS extract + probe)**
+
+```bash
+python3 discover_endpoints_full.py https://target.example --workers 10 --max-pages 150 --timeout 8
+# Output:
+# - endpoints_report.json
+# - burp_scan.csv
+# - curl_examples.txt
+```
+
+*Flags penting*
+
+* `--workers N` : concurrency (default 8).
+* `--max-pages N` : batas crawl pages (default 200).
+* `--subdomains` : (opsional) passive subdomain enumeration via crt.sh (read-only).
+
+2. **Parse kandidat API**
+
+```bash
+python3 parse_api.py
+# Output: api_candidates.txt
+```
+
+`parse_api.py` mencari kandidat dari beberapa sumber di `endpoints_report.json` (probe_results, forms, js_found_urls, subdomains_passive).
+
+3. **Validasi kandidat (HEAD + GET sample)**
+
+```bash
+python3 validate_api_candidates.py --workers 8
+# Output: api_validation.json, curl_checks.sh
+```
+
+Opsi:
+
+* `--only-head` : hanya lakukan HEAD (lebih aman & cepat)
+* `--workers N` : concurrency
+
+`curl_checks.sh` berisi perintah `curl` otomatis untuk endpoint yang merespon OK (<400).
+
+---
+
+## Contoh alur cepat (one-liner yang setara)
+
+* Generate list URL dari `api_candidates.txt` dan lakukan HEAD:
+
+```bash
+awk -F'\t' 'NR>1 {print $3}' api_candidates.txt | sort -u | while read url; do
+  echo "---- $url ----"
+  curl -s -I -L -m 8 "$url" | sed -n '1,6p'
+  # jika content-type JSON -> ambil sample body
+  ct=$(curl -s -I -L -m 8 "$url" 2>/dev/null | tr -d '\r' | awk '/[Cc]ontent-[Tt]ype/ {print $2}')
+  if echo "$ct" | grep -iq "json"; then
+    echo "[*] JSON sample:"
+    curl -s -L -m 8 "$url" | head -c 800
+    echo
+  fi
+done
+```
+
+Tapi lebih rapi pakai `validate_api_candidates.py` karena menangani error dan concurrency.
+
+---
+
+## Output & file penjelasan
+
+* `endpoints_report.json` : laporan lengkap dari discovery (crawled pages, probe_results, forms, js files, subdomains_passive, dsb).
+* `burp_scan.csv` : CSV berisi `method_or_probe, url, status, content_type, length` — import ke Burp Target.
+* `curl_examples.txt` : contoh curl untuk form POST/GET otomatis.
+* `api_candidates.txt` : daftar kandidat endpoint API (hasil parse).
+* `api_validation.json` : hasil validasi (HEAD & GET sample) per URL.
+* `curl_checks.sh` : skrip curl untuk re-check endpoint yang merespon OK.
+
+---
+
+## Troubleshooting singkat
+
+* **Error `Invalid IPv6 URL`** saat menjalankan script: pastikan menggunakan versi skrip yang sudah diperbaiki (script saat ini sudah meng-skip token URL yang tidak valid).
+* **Script lama lambat**: turunkan `--max-pages`, atau kurangi `--workers` jika target sensitif.
+* **Butuh runtime JS (SPA)**: gunakan browser DevTools (Network → XHR/Fetch) pada session interaktif untuk menangkap API runtime.
+
+---
+
+## Etika & legal
+
+* Hanya gunakan toolkit ini jika kamu **memiliki izin tertulis** dari pemilik sistem. Jangan melakukan brute-force, fuzzing, atau tindakan yang mengubah data tanpa izin.
+* Jika menemukan data sensitif atau bug kritikal, laporkan melalui jalur resmi (CSIRT / owner) sesuai kebijakan.
+
+---
+
+## Contribusi
+
+Terima kasih jika ingin kontribusi: buka PR (README, perbaikan bug, opsi baru). Gunakan branch dan PR standar GitHub.
+
+**Contoh template PR**:
+
+* Deskripsi singkat perubahan
+* Cara reproduce (jika bugfix)
+* Test yang dijalankan
+
+---
+
+## Lisensi
+
+Gunakan lisensi MIT (default). Jika setuju, tambahkan file `LICENSE` dengan isi MIT.
+
+---
+
+## Contact
+
+Kalau mau tambahan fitur (mis. output CSV custom untuk Burp, headless-browser extraction, atau parsing otomatis untuk types tertentu), tinggal tambahin issue di repo atau tag aku di commit message.
+
+---
+
+*Generated by Endpoint Discovery Toolkit — dokumentasi singkat untuk diupload ke GitHub.*
