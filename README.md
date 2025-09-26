@@ -10,9 +10,9 @@ Program Script Python Untuk Melakukan *Passive* Discovery Endpoint Api Pada Sebu
 * `discover_endpoints_full.py` — Crawler + JS Extractor + Probe (Hasil: `endpoints_report.json`, `burp_scan.csv`, `curl_examples.txt`).
 * `parse_api.py` — Parser Yang Mengekstrak Kandidat API Dari `endpoints_report.json` → `api_candidates.txt`.
 * `validate_api_candidates.py` — Melakukan HEAD (+ GET Sample) Pada `api_candidates.txt`, Menyimpan `api_validation.json` Dan `curl_checks.sh`.
-* `curl_examples.txt` — Contoh `curl` Yang Dihasilkan Otomatis Dari Crawling (Form/POST Dll).
-* `burp_scan.csv` — CSV Siap Import Ke Burp Suite (Target List).
-* `endpoints_report.json` — Contoh Output Hasil Discovery (Jika Ada).
+* `curl_examples.txt` — Contoh `curl` Yang Dihasilkan Otomatis Dari Crawling (Form/POST Dll)
+* `burp_scan.csv` — CSV Siap Import Ke Burp Suite (Target List)
+* `endpoints_report.json` — Contoh Output Hasil Discovery (Jika Ada)
 
 ---
 
@@ -47,7 +47,7 @@ python3 discover_endpoints_full.py https://target.example --workers 10 --max-pag
 
 * `--workers N` : Concurrency (Default 8).
 * `--max-pages N` : Batas Crawl Pages (Default 200).
-* `--subdomains` : (Opsional) Passive Subdomain Enumeration Via crt.sh (Read-Only).
+* `--subdomains` : (Opsional) Passive Subdomain Enumeration Via crt.sh (Read-Only)
 
 2. **Parse Kandidat API**
 
@@ -56,7 +56,7 @@ python3 parse_api.py
 # Output: api_candidates.txt
 ```
 
-`parse_api.py` Mencari Kandidat Dari Beberapa Sumber Di `endpoints_report.json` (Probe_Results, Forms, Js_Found_Urls, Subdomains_Passive).
+`parse_api.py` Mencari Kandidat Dari Beberapa Sumber Di `endpoints_report.json` (Probe_Results, Forms, Js_Found_Urls, Subdomains_Passive)
 
 3. **Validasi Kandidat (HEAD + GET Sample)**
 
