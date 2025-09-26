@@ -36,6 +36,7 @@ pip install requests beautifulsoup4
 
 ```bash
 python3 discover_endpoints_full.py https://target.example --workers 10 --max-pages 150 --timeout 8
+
 # Output:
 # - endpoints_report.json
 # - burp_scan.csv
